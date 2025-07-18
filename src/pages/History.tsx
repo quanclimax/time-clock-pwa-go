@@ -12,7 +12,7 @@ import { AttendanceRecord } from '@/contexts/AttendanceContext';
 const History: React.FC = () => {
   const { getRecordsByDateRange } = useAttendance();
   const [expandedRecord, setExpandedRecord] = useState<string | null>(null);
-  const [filterMonth, setFilterMonth] = useState('');
+  const [filterMonth, setFilterMonth] = useState('all-months');
   const [filterStatus, setFilterStatus] = useState('all');
 
   // Get last 30 days by default
@@ -24,7 +24,7 @@ const History: React.FC = () => {
   const filteredRecords = useMemo(() => {
     let filtered = [...allRecords];
 
-    if (filterMonth) {
+    if (filterMonth && filterMonth !== 'all-months') {
       filtered = filtered.filter(record => record.date.startsWith(filterMonth));
     }
 
@@ -147,7 +147,7 @@ const History: React.FC = () => {
                     <SelectValue placeholder="Tất cả tháng" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Tất cả tháng</SelectItem>
+                    <SelectItem value="all-months">Tất cả tháng</SelectItem>
                     {getMonthOptions().map(month => (
                       <SelectItem key={month.value} value={month.value}>
                         {month.label}
