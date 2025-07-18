@@ -5,6 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: "/time-clock-pwa-go/", // 👈 Bắt buộc thêm dòng này để GitHub Pages hoạt động
   server: {
     host: "::",
     port: 8080,
